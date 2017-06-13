@@ -1,1 +1,2 @@
-*.pytc
+*.pyc
+db.sqlite3
