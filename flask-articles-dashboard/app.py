@@ -55,13 +55,14 @@ def register():
 		email = form.email.data
 		username = form.username.data
 		password = sha256_crypt.encrypt(str(form.password.data))
+		# password = form.password.data
 
 		# Create cursor
 		cur = mysql.connection.cursor()
-		cur.execute("INSERT INTO users(name, email, username, password) VALUES({}, {}, {}, {})".format(name, email, username, password))
+		cur.execute("INSERT INTO users (name, email, username, password) VALUES (%s, %s, %s, %s)", (name, email, username, password))
 		
 		# Commit to DB
-		mysql.connectoin.commit()
+		mysql.connection.commit()
 
 		#Close connection
 		cur.close()
@@ -71,7 +72,33 @@ def register():
 		redirect(url_for('index'))
 	return render_template('register.html', form=form)
 
+# User login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+	if request.method == 'POST':
+		# Get From Fields
+		username = request.form['username']
+		password_candidate = request.form['password']
 
+		# Cursor
+		cur = mysql.connection.cursor()
+
+		# Get user by username
+		result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
+
+		if result > 0:
+			# Get stored hash [fetches first result from the query]
+			data = cur.fetchone()
+			password = data['password']
+
+			if sha256_crypt.verify(password_candidate, password):
+				app.logger.info('PASSWORD MATCHED')
+			else:
+				app.logger.info('PASSWORD NOT MATCHED')
+		else:
+			app.logger.info('NO USER')
+
+	return render_template('login.html')
 
 if __name__ == '__main__':
 	# debug=True : no need to restart the server every single time
