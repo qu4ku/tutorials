@@ -5,13 +5,10 @@ from passlib.hash import sha256_crypt
 from flask_mysqldb import MySQL
 from functools import wraps
 
-from data import Articles
 
 app = Flask(__name__)
 
-# Config MySQL
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:TMLrd:J,3rtc@localhost/myflashapp'
-# db = SQLAlchemy(app)
+
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '12345'
@@ -20,7 +17,6 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
 mysql = MySQL(app)
 
-article_list = Articles()
 
 @app.route('/')
 def index():
@@ -33,11 +29,41 @@ def about():
 # Articles
 @app.route('/articles')
 def articles():
-	return render_template('articles.html', articles=article_list)
+	# Create cursor
+	cur = mysql.connection.cursor()
+
+	# Get article
+	result = cur.execute("SELECT * FROM articles")
+	articles = cur.fetchall()
+
+	if result > 0:
+		return render_template('articles.html', articles=articles)
+	else:
+		msg = 'No Articles Found'
+		return render_template('articles.html', msg=msg)
+
+	# Close connection
+	cur.close()
+
 
 # Single Article
 @app.route('/article/<string:id>/')
 def article(id):
+	# Create cursor
+	cur = mysql.connection.cursor()
+
+	# Get articles
+	result = cur.execute("SELECT * FROM articles WHERE id = %s", [id])
+	articles = cur.fetchall()
+
+	if result > 0:
+		return render_template('articles.html', articles=articles)
+	else:
+		msg = 'No Articles Found'
+		return render_template('articles.html', msg=msg)
+
+	# Close connection
+	cur.close()
 	return render_template('article.html', id=id)
 
 # Register Form Class
@@ -136,8 +162,53 @@ def logout():
 @app.route('/dashboard')
 @is_logged_in
 def dashboard():
-	return render_template('dashboard.html')
+	# Create cursor
+	cur = mysql.connection.cursor()
 
+	# Get articles
+	result = cur.execute("SELECT * FROM articles")
+	articles = cur.fetchall()
+
+	if result > 0:
+		return render_template('dashboard.html', articles=articles)
+	else:
+		msg = 'No Articles Found'
+		return render_template('dashboard.html', msg=msg)
+
+	# Close connection
+	cur.close()
+
+
+# Article Form Class
+class ArticleForm(Form):
+	title = StringField('Title', [validators.Length(min=1, max=200)])
+	body = TextAreaField('Body', [validators.Length(min=30)])
+
+# Add Article
+@app.route('/add_article', methods=['GET', 'POST'])
+@is_logged_in
+def add_article():
+	form = ArticleForm(request.form)
+	if request.method == 'POST' and form.validate():
+		title = form.title.data
+		body = form.body.data
+
+		# Create cursor
+		cur = mysql.connection.cursor()
+
+		# Execute
+		cur.execute("INSERT INTO articles(title, body, author) VALUES(%s, %s, %s)", (title, body, session['username']))
+
+		# Commit to DB
+		mysql.connection.commit()
+
+		# Close connectoin
+		cur.close()
+
+		flash('Article created', 'success')
+
+		return redirect(url_for('dashboard'))
+	return render_template('add_article.html', form=form)
 
 
 if __name__ == '__main__':
