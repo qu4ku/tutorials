@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Css Grids</title>
+
+	<style>
+		.wrapper{
+			max-width: 900px;
+			display:grid;
+			grid-template-columns: 70% 30%;
+			grid-column-gap: 1em;
+		}
+
+		.wrapper > div{
+			background: #eee;
+			padding: 1em;
+		}
+
+		.wrapper > div:nth-child(odd){
+			background: #ddd;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div>
+			1 ipsum dolor sit amet, consectetur adipisicing elit. Dolorem temporibus nisi quas, earum, quis maxime corporis repudiandae cumque, illum in qui asperiores sunt. Qui nisi, a at numquam recusandae, dignissimos eveniet ab id nemo ut doloribus cumque beatae fuga nam sint aliquid perspiciatis voluptates. Quibusdam quod pariatur dolorum quo, iste omnis ad quam mollitia totam et doloremque quidem veritatis porro non maiores modi officia repellendus ipsam sunt magnam recusandae aspernatur tenetur. Explicabo velit in quam facere odit, eum natus modi.
+		</div>
+		<div>
+			2 ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, nisi, odio nulla officiis, unde error voluptatum nobis distinctio, impedit delectus itaque quaerat neque ab commodi nihil facilis accusantium quis libero.
+		</div>
+		<div>
+			3 ipsum dolor sit amet, consectetur adipisicing elit. Quos accusamus aliquid laboriosam in ea rerum at omnis labore dolor. Id explicabo molestiae rem perferendis quis, architecto, iusto quia natus nihil similique distinctio aperiam placeat quidem accusantium debitis tempore, assumenda voluptatibus? Esse, iusto aperiam explicabo autem perspiciatis modi. Nisi dolorum, eius.
+		</div>
+		<div>
+			4 ipsum dolor sit amet, consectetur adipisicing elit. Ullam fugit impedit nobis temporibus rerum, vel aliquid praesentium, placeat quaerat, aspernatur perspiciatis pariatur sit porro error vitae quis perferendis mollitia distinctio iusto nesciunt? Nostrum quas a voluptatem culpa, asperiores ex deleniti!
+		</div>
+	</div>
+</body>
+</html>
