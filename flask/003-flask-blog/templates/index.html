@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Guest BOOK</title>
+	<style>
+		.wrapper{
+			width: 800px;
+			margin: auto;
+		}
+		.comment{
+			background: lightgray;
+			padding: 1em;
+			margin-bottom: 1em;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<h1>Guest Book</h1>
+		<a href="/sign">Sign the Guest Book</a>
+
+		{% for guest in guests %}
+			<div class="comment">
+				<h2> {{ guest.name }}</h2>
+				<p> {{ guest.comment }}</p>
+			</div>
+		{% endfor %}
+	</div>
+	
+</body>
+</html>

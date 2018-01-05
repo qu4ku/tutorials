@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Example Template</title>
+</head>
+<body>
+	<h1>The variable is: {{ my_var }}</h1>
+	<h1>
+		This is an example template.
+	</h1>
+
+	{% for link in links %}
+		<!-- <p>{{ link }}</p> -->
+		<a href="{{ link[0] }}">{{ link[1] }}</a><br>
+	{% endfor %}
+	
+</body>
+</html>
