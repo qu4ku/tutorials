@@ -1,0 +1,10 @@
+{% extends 'partials/main.html' %}
+
+{% block content %}
+	<div class="todo">
+		<h2 class="header">{{todo.title}}</h2>
+		<p class="content">{{todo.text}}</p>
+		<p class="date">Created on: {{todo.created_at}}</p>
+	</div>
+{% endblock %}
+

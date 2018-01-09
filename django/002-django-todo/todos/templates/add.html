@@ -1,0 +1,16 @@
+{% extends 'partials/main.html' %}
+
+{% block content %}
+
+	<form action="{% url 'add' %}" method="post">
+		{% csrf_token %}
+		<label for="title">Title</label><br>
+		<input class="form-title" type="text" name="title" id="title"/><br>
+
+		<label for="text">Text</label><br>
+		<textarea class="form-text" name="text" id="text"></textarea><br>
+
+		<input type="Submit" value="Submit" class="btn" />
+	</form>
+
+{% endblock %}

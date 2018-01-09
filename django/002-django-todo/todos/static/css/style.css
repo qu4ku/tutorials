@@ -1,0 +1,70 @@
+body {
+	font-family: "Roboto","Lucida Grande","DejaVu Sans",sans-serif;
+}
+.wrapper {
+	width: 800px;
+	background-color: silver;
+	padding:50px;
+	margin: 50px auto 0 auto;
+}
+.title {
+	background-color: grey;
+	padding: 20px auto;
+	text-align: center;
+}
+
+.todo {
+	background-color: grey;
+	padding: 10px;
+	margin: 10px 0px;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+.header {
+	font-size: 20px;
+	text-transform: uppercase;
+	padding: 20px;
+	background-color: black;
+	color: white;
+	margin: 0 auto;
+}
+
+
+.content {
+	font-size: 14px;
+	padding: 50px;
+	background-color: darkgrey;
+	color: white;
+}
+
+.date {
+	font-size: 10px;
+	text-transform: uppercase;
+	padding: 20px;
+	background-color: darkgrey;
+	color: white;
+}
+
+.btn{
+	display:inline-block;
+	margin:10px 0;
+	padding:10px;
+	text-align: center;
+	background-color: red;
+}
+
+.form-title{
+	min-width: 200px;
+	height: 40px;
+	margin: 20px 0;
+}
+
+.form-text{
+	margin: 20px 0;
+	width: 100%;
+	min-height: 200px;
+}

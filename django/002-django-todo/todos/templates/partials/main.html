@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock %}</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<title>TodoList</title>
+</head>
+<body>
+	<div class="wrapper">
+		<head>
+			<h1 class="title">TodoList</h1>
+		</head>
+		<a class="btn" href="/todos/add">Add Todo</a><hr>
+
+		{% block content %}{% endblock %}
+	</div>
+</body>
+</html>
