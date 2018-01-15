@@ -8,4 +8,5 @@ class ReviewAdmin(admin.ModelAdmin):
 	search_fields = ['comment']
 
 admin.site.register(Wine)
+# admin.site.register(Review, ReviewAdmin)
 admin.site.register(Review, ReviewAdmin)
