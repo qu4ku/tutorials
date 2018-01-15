@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block toptitle %}WineLibrary{% endblock %}</title>
+</head>
+<body>
+
+<div>
+	<nav>
+		<div><a href="{ url 'reviews:review:list' %}"></a>WineLibrary</div>
+		<div class="navbar">
+			<ul>
+				<li><a href="{% url 'reviews:wine_list' %}">Wine List</a></li>
+				<li><a href="{% url 'reviews:review_list' %}">Home</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<h1>
+		{% block title %}(no title){% endblock %}
+	</h1>
+	{% block content %} 
+	{% endblock %}
+</div>
+
+
+	
+</body>
+</html>
