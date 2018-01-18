@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Wine List
+{% endblock %}
+
+
+{% block content %}
+
+<h2>Latest Wines</h2>
+
+{% if wine_list %}
+
+<div>
+	{% for wine in wine_list %}
+	<div>
+		<h4><a href="{% url 'reviews:wine_detail' wine.id %}">{{ wine.name }}</a></h4>
+		<h6>RATED {{ wine.average_rating }} OF 5</h6>
+		<!-- <p>{{ review.comment }}</p> -->
+	</div>
+	{% endfor %}
+</div>
+{% else %}
+<p>No wines are available.</p>
+
+{% endif %}
+
+{% endblock %}
