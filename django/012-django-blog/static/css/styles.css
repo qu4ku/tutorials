@@ -16,3 +16,9 @@ a, a:hover, a:visited {
 	color: #fff;
 	text-decoration: none;
 }
+
+.logo {
+	height: 150px;
+	width: 150px;
+	margin: 0 auto;
+}
