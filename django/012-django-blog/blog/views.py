@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import Article
 
@@ -18,3 +19,7 @@ def article_detail(request, slug):
 	article = Article.objects.get(slug=slug)
 
 	return render(request, 'article_detail.html', {'article': article})
+
+def signup_view(request):
+	form = UserCreationForm()
+	return render(request, 'signup.html', {'form': form})
