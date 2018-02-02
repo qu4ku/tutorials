@@ -59,7 +59,9 @@ def create_view(request):
 	if request.method == "POST":
 		form = forms.CreateArticle(request.POST, request.FILES)
 		if form.is_valid():
-			# Save article into dv
+			instance = form.save(commit=False)
+			instance.author = request.user
+			instance.save()
 			return redirect('article_list')
 	else:
 		form = forms.CreateArticle()
