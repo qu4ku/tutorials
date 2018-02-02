@@ -10,6 +10,16 @@
 <body>
 	<div class="wrapper">
 		<h1><a href="{% url 'article_list' %}"><img class="logo" src="{% static 'img/logo_c.png' %}" alt="logo"></a></h1>
+		<nav>
+			<ul>
+				<li>
+					<form action="{% url 'logout' %}" method="post">
+						{% csrf_token %}
+						<button type="submit">Logout</button>
+					</form>
+				</li>
+			</ul>
+		</nav>
 		{% block content %}
 		{% endblock %}
 	</div>
