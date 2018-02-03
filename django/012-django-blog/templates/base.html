@@ -9,17 +9,27 @@
 </head>
 <body>
 	<div class="wrapper">
-		<h1><a href="{% url 'article_list' %}"><img class="logo" src="{% static 'img/logo_c.png' %}" alt="logo"></a></h1>
-		<nav>
-			<ul>
-				<li>
-					<form action="{% url 'logout' %}" method="post">
-						{% csrf_token %}
-						<button type="submit">Logout</button>
-					</form>
-				</li>
-			</ul>
-		</nav>
+		<header>
+			<a href="{% url 'article_list' %}"><img class="logo" src="{% static 'img/logo_c.png' %}" alt="logo"></a>
+			<nav>
+				<ul>
+					{% if user.is_authenticated %}
+						<li>
+							<form action="{% url 'logout' %}" method="post">
+								{% csrf_token %}
+								<button type="submit">Logout</button>
+							</form>
+						</li>
+						<li><a href="{% url 'create' %}" class="highlight">New Article</a></li>		
+					{% else %}
+						<li><a href="{% url 'login' %}">Login</a></li>		
+						<li><a href="{% url 'signup' %}">Signup</a></li>		
+						
+
+					{% endif %}
+				</ul>
+			</nav>
+		</header>
 		{% block content %}
 		{% endblock %}
 	</div>
