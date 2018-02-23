@@ -1,0 +1,24 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 50px 150px ;
+}
+
+
+.title {
+	grid-area: title;
+}
+
+.grid div:nth-child(even) {
+	background-color: red;
+}
+
+.grid div:nth-child(odd) {
+	background-color: green;
+}
