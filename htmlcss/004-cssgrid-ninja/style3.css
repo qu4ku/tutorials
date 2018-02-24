@@ -1,0 +1,43 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	text-align: center;
+	font-family: "monospace";
+	color: #fff;
+}
+
+.content {
+	max-width: 800px;
+	margin: 20px auto;
+
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 30px;
+
+}
+
+
+.content div {
+	background: #3bbced;
+	padding: 30px;
+}
+
+.three {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 20px;
+	grid-column: span 3;
+}
+
+.three p {
+	border: 2px solid white;
+	padding: 20px;
+	margin: 0;
+}
+
+.content div:nth-child(even) {
+	background: #777;
+}
