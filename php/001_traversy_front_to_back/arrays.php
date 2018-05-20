@@ -14,5 +14,12 @@
 	// print_r($cars)
 	// var_dump($cars)
 	$people = array('brad' => 34, 'kamil' => 40);
-	print_r($people);
+	// print_r($people);
+
+	$cars = array(
+		array('Honda', 20, 10),
+		array('Toyota', 25, 10),
+		array('Hyundai', 30, 10),
+	);
+	echo $cars[1][0]
 ?>
