@@ -1,6 +1,6 @@
 <?php
 	require('config/db.php');
-	require('config/config.php');
+	// require('config/config.php');
 
 	// get id 
 	$id = mysqli_real_escape_string($conn, $_GET['id']);

@@ -1,6 +1,6 @@
 <?php
 	require('config/db.php');
-	require('config/config.php');
+	// require('config/config.php');
 
 	$query = 'SELECT * FROM posts';
 
