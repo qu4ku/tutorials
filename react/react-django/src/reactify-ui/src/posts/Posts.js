@@ -3,6 +3,7 @@ import 'whatwg-fetch'
 import cookie from 'react-cookies'
 
 import PostInline from './PostInline'
+import PostCreate from './PostCreate'
 
 class Posts extends Component {
 
@@ -103,16 +104,22 @@ class Posts extends Component {
     // doesn't work:
     // const [postsListClass] = this.state
     const postsListClass = this.state.postsListClass
+    const csrfToken = cookie.load('csrftoken')
     return (
       <div>
         <h1>Hello World</h1>
-        <button onClick={this.togglePostListClass}>Toggle Class</button>
-        {posts.length > 0 ? posts.map((postItem, index)=>{
-          return (
-              <PostInline post={postItem} elClass={postsListClass} />
-            )
-        }) : <p>No Posts Found</p>}
+          <button onClick={this.togglePostListClass}>Toggle Class</button>
+          {posts.length > 0 ? posts.map((postItem, index)=>{
+            return (
+                <PostInline post={postItem} elClass={postsListClass} />
+              )
+          }) : <p>No Posts Found</p>}
 
+          {(csrfToken !== undefined && csrfToken !== null) ? 
+          <div className="my-5">
+            <PostCreate />
+          </div>
+          : ""}
         
       </div>
     );
