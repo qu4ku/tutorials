@@ -10,6 +10,7 @@ class Posts extends Component {
   constructor(props){
     super(props)
     this.togglePostListClass = this.togglePostListClass.bind(this)
+    this.handleNewPost = this.handleNewPost.bind(this)
   }
 
   state = {
@@ -39,39 +40,13 @@ class Posts extends Component {
     })
   }
 
-  createPost() {
-    const endpoint = '/api/posts/'
-    const csrfToken = cookie.load('csrftoken')
-    let thisComp = this
-    let data = {
-      "slug": "",
-      "title": "",
-      "content": "",
-      "draft": false,
-      "publish": null
-    }
-    if (csrfToken !== undefined) {
-      let lookupOptions = {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': csrfToken
-        },
-        body: JSON.stringify(data),
-        credentials: 'include',
-
-      }
-
-      fetch(endpoint, lookupOptions)
-      .then(function(response){
-        return response.json()
-      }).then(function(responseData){
-        console.log(responseData)
-        
-      }).catch(function(error){
-        console.log("error", error)
-      })
-    }
+  handleNewPost(postItemData){
+    console.log(postItemData)
+    let currentPosts = this.state.posts
+    currentPosts.unshift(postItemData)  // adding to
+    this.setState({
+      posts: currentPosts
+    })
   }
 
   togglePostListClass(event){
@@ -117,7 +92,7 @@ class Posts extends Component {
 
           {(csrfToken !== undefined && csrfToken !== null) ? 
           <div className="my-5">
-            <PostCreate />
+            <PostCreate newPostItemCreated={this.handleNewPost} />
           </div>
           : ""}
         
