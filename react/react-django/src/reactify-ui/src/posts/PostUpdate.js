@@ -54,7 +54,7 @@ class PostUpdate extends Component {
 		  })
 		}
 	  }
-	  
+
 	updatePost(data) {
 		const {post} = this.props
 		const endpoint = `/api/posts/${post.slug}/`
@@ -75,11 +75,11 @@ class PostUpdate extends Component {
 		  .then(function(response){
 			return response.json()
 		  }).then(function(responseData){
-			console.log(responseData)
-			if (thisComp.props.newPostItemCreated){
-				thisComp.props.newPostItemCreated(responseData)
+			// console.log(responseData)
+			if (thisComp.props.newPostItemUpdated){
+				thisComp.props.newPostItemUpdated(responseData)
 			}
-			thisComp.clearForm()
+
 		  }).catch(function(error){
 			console.log("error", error)
 			alert("An error occured, please try again later.")
@@ -90,7 +90,14 @@ class PostUpdate extends Component {
 	handleSubmit(event){
 		event.preventDefault()
 		let data = this.state
-		this.updatePost(data)
+
+		const {post} = this.props
+		if (post !== undefined) {
+			this.updatePost(data)
+		} else {
+			this.createPost(data)
+		}
+		
 	}
 
 	handleInputChange(event){
@@ -196,7 +203,7 @@ class PostUpdate extends Component {
 						required='required' />
 				</div>
 				<button className='btn btn-primary'>Save</button>
-				<button className={`btn btn-secondary ${this.props.post === 'undefined' ? "d-block" : ""}} onClick={this.clearForm}>Clear</button>
+				<button className={`btn btn-secondary ${this.props.post === 'undefined' ? "d-block" : ""}`} onClick={this.clearForm}>Clear</button>
 			</form>
 		)
 	}
