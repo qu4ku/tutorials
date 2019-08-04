@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
 import Articles from '../components/Article';
 
 
@@ -18,15 +17,12 @@ class ArticleList extends React.Component {
 				this.setState({
 					articles: res.data
 				});
-				console.log(res.data);
 			})
 	}
-
 
 	render () {
 		return (
 			<Articles data={this.state.articles} />
-
 		)
 	}
 }
