@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { Card } from 'antd';
+import CustomForm from '../components/Form';
 
 
 class ArticleDetail extends React.Component {
@@ -24,9 +25,15 @@ class ArticleDetail extends React.Component {
 
 	render () {
 		return (
-			<Card title={this.state.article.title}>
-				<p>{this.state.article.content}</p>
-			</Card>
+			<div>
+				<Card title={this.state.article.title}>
+					<p>{this.state.article.content}</p>
+				</Card>
+				<CustomForm
+					requestType="put"
+					articleID={this.state.article.articleID}
+					btnText="Update" />
+			</div>
 		)
 	}
 }

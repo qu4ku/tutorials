@@ -24,10 +24,12 @@ class ArticleList extends React.Component {
 		return (
 			<div>
 				<Articles data={this.state.articles} />
-
 				<br />
 				<h2>Create an article</h2>
-				<CustomForm />
+				<CustomForm
+					requestType="post"
+					articleID={null}
+					btnText="Create" />
 			</div>
 		)
 	}
