@@ -31,7 +31,7 @@ class ArticleDetail extends React.Component {
 				</Card>
 				<CustomForm
 					requestType="put"
-					articleID={this.state.article.articleID}
+					articleID={this.props.match.params.articleID}
 					btnText="Update" />
 			</div>
 		)

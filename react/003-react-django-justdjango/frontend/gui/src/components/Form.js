@@ -9,7 +9,6 @@ const FormItem = Form.Item;
 class CustomForm extends React.Component {
   
   handleFormSubmit = (event, requestType, articleID) => {
-    event.preventDefalt();
     const title = event.target.elements.title.value;
     const content = event.target.elements.content.value;
 
@@ -29,6 +28,7 @@ class CustomForm extends React.Component {
          .then(res => console.log(res))
          .catch(error => console.err(error));
     }
+
 
   }
 
