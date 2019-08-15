@@ -8,7 +8,7 @@ import CustomLayout from './containers/Layout'
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Router>
         <CustomLayout>
           <BaseRouter />
