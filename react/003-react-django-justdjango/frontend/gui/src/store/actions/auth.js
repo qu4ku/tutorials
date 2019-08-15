@@ -14,7 +14,7 @@ export const authSuccess = token => {
 	}
 }
 
-export const authFeiled = error => {
+export const authFailed = error => {
 	return {
 		type: actionTypes.AUTH_FAIL,
 		error: error
@@ -55,7 +55,7 @@ export const authLogin = (username, password) => {
 			dispatch(checkAuthTimeout(3600)); // 1h
 		})
 		.catch(err => {
-			dispatch(authFail(err))
+			dispatch(authFailed(err))
 		})
 	}
 }
@@ -78,7 +78,24 @@ export const authSignup = (username, email, password1, password2) => {
 			dispatch(checkAuthTimeout(3600)); // 1h
 		})
 		.catch(err => {
-			dispatch(authFail(err))
+			dispatch(authFailed(err))
 		})
+	}
+}
+
+export const authCheckState = () => {
+	return dispatch => {
+		const token = localStorage.getItem('token');
+		if (token === undefined) {
+			dispatch(logout());
+		} else {
+			const expirationDate = new Date(localStorage.getItem('expirationDate'));
+			if (expirationDate <= new Date()) {
+				dispatch(logout());
+			} else {
+				dispatch(authSuccess(token));
+				dispatch(checkAuthTimeout((expirationDate.getTime() - new Date.getTime()) / 1000));
+			}
+		}
 	}
 }
