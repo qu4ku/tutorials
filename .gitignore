@@ -16,4 +16,5 @@ config.py
 /node_modules/*
 
 /data/*
+/venv
 
